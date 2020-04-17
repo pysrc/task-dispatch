@@ -1,0 +1,15 @@
+# kafka配置
+task:
+  topic: task
+  host: kafka:9092
+  groupid: myid
+
+# 线程池配置
+thread:
+  core_pool_size: 10
+  max_pool_size: 50
+  queue_capacity: 200
+  keep_alive_seconds: 60
+  thread_name_prefix: taskExecutor-
+  wait_for_tasks_to_complete_on_shutdown: true
+  await_termination_seconds: 60
