@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @ClassName:
@@ -30,6 +31,8 @@ public class ThreadConfig {
         taskExecutor.setThreadNamePrefix(value.getThreadNamePrefix());
         taskExecutor.setWaitForTasksToCompleteOnShutdown(value.isWaitForTasksToCompleteOnShutdown());
         taskExecutor.setAwaitTerminationSeconds(value.getAwaitTerminationSeconds());
+        // 线程池达到最大时等待结束 然后再加入任务
+        taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         return taskExecutor;
     }
 }
